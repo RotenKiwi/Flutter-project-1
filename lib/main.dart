@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Name Generator',
       theme: ThemeData(
     appBarTheme: const AppBarTheme(
-      backgroundColor: Color.fromRGBO(171, 95, 222, 1.0),
+      backgroundColor: Color.fromRGBO(177, 105, 224, 1.0),
       foregroundColor: Color.fromRGBO(0, 0, 0, 1.0)
     )
     ),
