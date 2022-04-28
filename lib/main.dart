@@ -9,16 +9,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Name Generator',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Name Generator :)'),
-        ),
-        body: const Center(
-          child: RandomWords(), //When 2 or more words need be appended to each other.
-        ),
-      ),
+      home: RandomWords(),
     );
   } //Widget
 } //class MyApp
@@ -34,9 +27,21 @@ class _RandomWordsState extends State<RandomWords> {
   final _suggestions= <WordPair>[];
   final _saved=<WordPair>{};
   final _biggerFont=const TextStyle(fontSize: 18);
+  void _pushSaved(){}
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return Scaffold(   // NEW from here ...
+        appBar: AppBar(
+          title: const Text('Startup Name Generator'),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.list),
+              onPressed: _pushSaved,
+              tooltip: 'Saved Suggestions',
+            ),
+          ],
+        ),
+        body: ListView.builder(
       padding: const EdgeInsets.all(16.0),
       itemBuilder: (context, i){
         if(i.isOdd) return const Divider();
@@ -51,7 +56,7 @@ class _RandomWordsState extends State<RandomWords> {
           ),
           trailing: Icon(
             alreadySaved ? Icons.favorite : Icons.favorite_border,
-            color: alreadySaved ? Colors.red : null,
+            color: alreadySaved ? Colors.lightBlueAccent : null,
             semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
           ),
           onTap: (){
@@ -65,6 +70,7 @@ class _RandomWordsState extends State<RandomWords> {
           }, //onTap
         );
       },
+        ),
     );
   }
 }
